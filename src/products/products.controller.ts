@@ -6,12 +6,16 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards, Req,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { CompanyAccessGuard } from '../company-access/company-access.guard';
+import { JwtAuthGuard } from '../auth/jwt/jwt-auth.guard';
 
-@Controller('products')
+@UseGuards(JwtAuthGuard, CompanyAccessGuard)
+@Controller('company/:companyId/products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
@@ -21,7 +25,8 @@ export class ProductsController {
   }
 
   @Get()
-  findAll() {
+  findAll(@Req() req: Request) {
+    console.log(req);
     return this.productsService.findAll();
   }
 
