@@ -1,5 +1,6 @@
 import {
   IsBoolean,
+  IsNotEmpty,
   IsNumber,
   IsOptional,
   IsString,
@@ -11,6 +12,7 @@ export class CreateProductDto {
   companyId: string;
 
   @IsString()
+  @IsNotEmpty()
   name: string;
 
   @IsNumber()
