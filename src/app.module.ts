@@ -7,6 +7,7 @@ import { RedisModule } from './cache/redis.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { CompanyAccessModule } from './company-access/company-access.module';
+import { VatModule } from './vat/vat.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { CompanyAccessModule } from './company-access/company-access.module';
     RedisModule,
     CompanyAccessModule,
     ProductsModule,
+    VatModule,
   ],
   controllers: [AppController],
   providers: [AppService],
